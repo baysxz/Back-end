@@ -5,15 +5,23 @@ const users = [
 
 exports.updateUser = (request, response) => {
   const { id } = request.params;
-  //   const { body } = request;
+  const { body } = request;
 
-  //   const updatedUser = users.map((user) => {
-  //     if (user.id === Number(id)) return (user.firstName = body.firstName), user;
-  //   });
+  const updatedUser = users.map((user) => {
+    if (user.id === Number(id)) {
+      user.firstName = body.firstName;
+      user.lastName = body.lastName;
+      return user;
+    }
 
-  if (id) {
-    response.status(200).send(users);
+    return user;
+  });
+
+  if (updatedUser) {
+    response
+      .status(200)
+      .json({ users: updatedUser, message: "Succesfully updated" });
   } else {
-    response.status(400).send(`user ${id} update failed `);
+    response.status(400).send(`user ${id} failed to update `);
   }
 };
