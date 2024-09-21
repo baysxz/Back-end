@@ -22,9 +22,9 @@ const comments = [
     createdTime: "Sat Sep 21 2024 09:06:22",
   },
 ];
-exports.postComments = (request, response) => {
-  comments.push({ ...request.body });
-  response
-    .status(200)
-    .json({ message: "Comment posted successfully.", comments: comments });
+
+exports.deleteComments = (request, response) => {
+  const { id } = request.params;
+  getUsers.splice(Number(id + 1), Number(id));
+  response.status(200).send(comments);
 };
