@@ -10,7 +10,7 @@ const {
   getCommentsByPostId,
 } = require("../controller/comments/getCommentsByPostId");
 const { updateComment } = require("../controller/comments/updateComment");
-
+const { postComments } = require("../controller/comments/postComments");
 const userRouter = express.Router();
 
 userRouter
@@ -21,5 +21,6 @@ userRouter
   .put("/:id", updateUser)
   .get("/comments/getComments", getComments)
   .get("/post/:postId", getCommentsByPostId)
-  .put("/comment/:commentId", updateComment);
+  .put("/comment/:commentId", updateComment)
+  .post("/comment/postComments", postComments);
 module.exports = userRouter;
