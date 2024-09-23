@@ -23,8 +23,17 @@ const comments = [
   },
 ];
 
+// exports.deleteComments = (request, response) => {
+//   const { commentId } = request.params;
+//   comments.splice(Number(commentId - 1), Number(commentId));
+//   response.status(200).send(comments);
+// };
+
+// filter ashiglaj hiih
 exports.deleteComments = (request, response) => {
   const { commentId } = request.params;
-  comments.splice(Number(commentId - 1), Number(commentId));
-  response.status(200).send(comments);
+  const newComments = comments.filter(
+    (comment) => comment.commentId !== Number(commentId)
+  );
+  response.status(200).json(newComments);
 };
